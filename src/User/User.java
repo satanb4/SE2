@@ -24,9 +24,4 @@ public class User {
     public void setPassword(String password){
         this.password = password;
     }
-
-    public static void main(String[] args) {
-        User user = new User("sayanban@gmail.com", "123456");
-        System.out.println(user.getEmail());
-    }
 }
