@@ -71,6 +71,7 @@ public class staff {
     }
 
     public void viewtraining(String name) {
+        System.out.println("This is your current training situation:");
         for (staff s : matchedStaffTrainingList) {
             if (s.getName().equals(name)) {
                 System.out.println(s.getName() + ", " + s.getTraining());
