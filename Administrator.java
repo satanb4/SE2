@@ -10,7 +10,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 
-public class Administrator {
+public class Administrator extends User {
     private static ArrayList<teachingRequirement> requirements = new ArrayList<>();
     private ArrayList<staff> matchedStaffList = new ArrayList<>();
     private ArrayList<staff> matchedStaffTrainingList = new ArrayList<>();

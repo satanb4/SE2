@@ -3,7 +3,7 @@ package ae;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class classDirector {
+public class classDirector extends User {
     private ArrayList<teachingRequirement> requirements = new ArrayList<>();
 
 
