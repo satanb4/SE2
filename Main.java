@@ -36,11 +36,12 @@ public class Main {
                     staff s = new staff(staffname);
                     s.receiveMatchedStaffList(administrator.getmatchedStaffList());
                     s.receiveMatchedStaffTrainingList(administrator.getmatchedStaffTrainingList());
-                    System.out.println(s.viewselection(staffname));
+                    s.viewselection(staffname);
                     if(s.viewselection(staffname) == true) {
+                        System.out.println("Congratulations！You have been selected!");
                         s.viewtraining(staffname);
-
                      }
+                    else System.out.println("Sorry, you were not selected.");
                     break;
                 case 0:
                     System.exit(0);
