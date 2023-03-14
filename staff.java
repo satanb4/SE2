@@ -9,8 +9,9 @@ public class staff extends User {
     private String qualification;
     private ArrayList<staff> matchedStaffList = new ArrayList<>();
     private ArrayList<staff> matchedStaffTrainingList = new ArrayList<>();
-    private training t;
     private User user;
+    private training t;
+
 
     public staff(String name) {
         this.name = name;
