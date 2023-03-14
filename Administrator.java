@@ -14,7 +14,9 @@ public class Administrator extends User {
     private static ArrayList<teachingRequirement> requirements = new ArrayList<>();
     private ArrayList<staff> matchedStaffList = new ArrayList<>();
     private ArrayList<staff> matchedStaffTrainingList = new ArrayList<>();
+    private User user = new User();
 
+    user.setCredentials("IAmAdministrator", "admin@gla.uk", "Password", "Administrator");
 
     public void receiveTeachingRequirements(ArrayList<teachingRequirement> requirements) {
         this.requirements.addAll(requirements);

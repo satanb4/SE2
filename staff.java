@@ -1,14 +1,16 @@
 package ae;
 
+
 import java.util.ArrayList;
 
-public class staff {
+public class staff extends User {
     private String name;
     private String skill;
     private String qualification;
     private ArrayList<staff> matchedStaffList = new ArrayList<>();
     private ArrayList<staff> matchedStaffTrainingList = new ArrayList<>();
     private training t;
+    private User user;
 
     public staff(String name) {
         this.name = name;
@@ -18,6 +20,7 @@ public class staff {
         this.skill = skill;
         this.qualification = qualification;
         this.name = name;
+        user.setCredentials(name, name + "@gla.uk", "Password", "Staff");
     }
 
     public staff(String name, training t) {
