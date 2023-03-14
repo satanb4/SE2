@@ -14,7 +14,7 @@ public class Administrator extends User {
     private static ArrayList<teachingRequirement> requirements = new ArrayList<>();
     private ArrayList<staff> matchedStaffList = new ArrayList<>();
     private ArrayList<staff> matchedStaffTrainingList = new ArrayList<>();
-    private User user = new User();
+    private User user;
 
     user.setCredentials("IAmAdministrator", "admin@gla.uk", "Password", "Administrator");
 
