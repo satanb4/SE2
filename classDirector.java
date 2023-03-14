@@ -1,13 +1,15 @@
-package ae;
+//package ae;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class classDirector extends User {
+public class classDirector extends User implements UserInterface{
     private ArrayList<teachingRequirement> requirements = new ArrayList<>();
     private User user;
 
-    user.setCredentials("IAmDirector", "director@gla.uk", "Password", "Director");
+   // user.setCredentials("IAmDirector", "director@gla.uk", "Password", "Director");
 
     public void fillTeachingRequirement() {
         System.out.println("Please enter the teaching requirement");
@@ -39,5 +41,9 @@ public class classDirector extends User {
         return requirements;
     }
 
+    @Override
+    public void createrole(User user) throws IOException {
+        user.setCredentials("IAmDirector", "director@gla.uk", "Password", "Director");
+    }
 }
 

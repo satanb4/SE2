@@ -1,4 +1,4 @@
-package ae;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -10,13 +10,13 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 
-public class Administrator extends User {
+public class Administrator extends User implements UserInterface{
     private static ArrayList<teachingRequirement> requirements = new ArrayList<>();
     private ArrayList<staff> matchedStaffList = new ArrayList<>();
     private ArrayList<staff> matchedStaffTrainingList = new ArrayList<>();
     private User user;
 
-    user.setCredentials("IAmAdministrator", "admin@gla.uk", "Password", "Administrator");
+ //   user.setCredentials("IAmAdministrator", "admin@gla.uk", "Password", "Administrator");
 
     public void receiveTeachingRequirements(ArrayList<teachingRequirement> requirements) {
         this.requirements.addAll(requirements);
@@ -39,7 +39,7 @@ public class Administrator extends User {
 
             HSSFWorkbook hssfWorkbook = null;
             try {
-                hssfWorkbook = new HSSFWorkbook(new FileInputStream("/Users/wangyuxin/Desktop/staff.xls"));
+                hssfWorkbook = new HSSFWorkbook(new FileInputStream("/Users/gongchunliu/Desktop/SE/staff.xls"));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -69,7 +69,7 @@ public class Administrator extends User {
                 }
             }
 
-            FileOutputStream fileOutputStream = new FileOutputStream("/Users/wangyuxin/Desktop/RebuildStaff.xls");
+            FileOutputStream fileOutputStream = new FileOutputStream("/Users/gongchunliu/Desktop/SE/RebuildStaff.xls");
 
             try {
                 hssfWorkbook1.write(fileOutputStream);
@@ -102,32 +102,32 @@ public class Administrator extends User {
         }
     }
 
-        public void organizeTraining() throws IOException {
-            HSSFWorkbook hssfWorkbook = null;
-            try {
-                hssfWorkbook = new HSSFWorkbook(new FileInputStream("/Users/wangyuxin/Desktop/RebuildStaff.xls"));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(0);
-
-            for (Row row : hssfSheet) {
-                String type = row.getCell(0).getStringCellValue();
-                int courseDuration = row.getCell(1).getStringCellValue().equals("undergraduate") ? 3 : 1;
-
-                training t = new training(type, courseDuration);
-                staff s = new staff(row.getCell(2).getStringCellValue(), t);
-                matchedStaffTrainingList.add(s);
-                row.createCell(row.getLastCellNum()).setCellValue(type + " training");
-                row.createCell(row.getLastCellNum()).setCellValue(courseDuration+ " month");
-            }
-            FileOutputStream fileOut = new FileOutputStream("/Users/wangyuxin/Desktop/RebuildStaff.xls");
-            hssfWorkbook.write(fileOut);
-            fileOut.close();
-            viewStaffAndTraining();
-
-
+    public void organizeTraining() throws IOException {
+        HSSFWorkbook hssfWorkbook = null;
+        try {
+            hssfWorkbook = new HSSFWorkbook(new FileInputStream("/Users/gongchunliu/Desktop/SE/RebuildStaff.xls"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
+        HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(0);
+
+        for (Row row : hssfSheet) {
+            String type = row.getCell(0).getStringCellValue();
+            int courseDuration = row.getCell(1).getStringCellValue().equals("undergraduate") ? 3 : 1;
+
+            training t = new training(type, courseDuration);
+            staff s = new staff(row.getCell(2).getStringCellValue(), t);
+            matchedStaffTrainingList.add(s);
+            row.createCell(row.getLastCellNum()).setCellValue(type + " training");
+            row.createCell(row.getLastCellNum()).setCellValue(courseDuration+ " month");
+        }
+        FileOutputStream fileOut = new FileOutputStream("/Users/gongchunliu/Desktop/SE/RebuildStaff.xls");
+        hssfWorkbook.write(fileOut);
+        fileOut.close();
+        viewStaffAndTraining();
+
+
+    }
     public void viewStaffAndTraining() {
         System.out.println("Matched staff and training:");
         for (staff matchedStaff : matchedStaffTrainingList) {
@@ -139,5 +139,10 @@ public class Administrator extends User {
     }
     public ArrayList<staff> getmatchedStaffTrainingList() {
         return matchedStaffTrainingList;
+    }
+
+    @Override
+    public void createrole(User user) throws IOException {
+        user.setCredentials("IAmAdministrator", "admin@gla.uk", "Password", "Administrator");
     }
 }

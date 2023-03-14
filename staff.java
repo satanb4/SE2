@@ -1,9 +1,9 @@
-package ae;
-
-
+//package ae;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
-public class staff extends User {
+public class staff extends User implements UserInterface{
     private String name;
     private String skill;
     private String qualification;
@@ -21,7 +21,7 @@ public class staff extends User {
         this.skill = skill;
         this.qualification = qualification;
         this.name = name;
-        user.setCredentials(name, name + "@gla.uk", "Password", "Staff");
+       // user.setCredentials(name, name + "@gla.uk", "Password", "Staff");
     }
 
     public staff(String name, training t) {
@@ -81,5 +81,10 @@ public class staff extends User {
                 System.out.println(s.getName() + ", " + s.getTraining());
             }
         }
+    }
+
+    @Override
+    public void createrole(User user) throws IOException {
+        user.setCredentials(name, name + "@gla.uk", "Password", "Staff");
     }
 }
