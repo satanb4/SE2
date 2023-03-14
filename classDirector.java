@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class classDirector extends User {
     private ArrayList<teachingRequirement> requirements = new ArrayList<>();
 
-
+    user.setCredentials("Directory", "director@gla.uk", "Password");
 
     public void fillTeachingRequirement() {
         System.out.println("Please enter the teaching requirement");

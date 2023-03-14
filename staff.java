@@ -1,8 +1,9 @@
 package ae;
 
+
 import java.util.ArrayList;
 
-public class staff {
+public class staff extends User {
     private String name;
     private String skill;
     private String qualification;
