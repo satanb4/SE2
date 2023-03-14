@@ -10,6 +10,7 @@ public class staff extends User {
     private ArrayList<staff> matchedStaffList = new ArrayList<>();
     private ArrayList<staff> matchedStaffTrainingList = new ArrayList<>();
     private training t;
+    private User user;
 
     public staff(String name) {
         this.name = name;
@@ -19,6 +20,7 @@ public class staff extends User {
         this.skill = skill;
         this.qualification = qualification;
         this.name = name;
+        user.setCredentials(name, name + "@gla.uk", "Password", "Staff");
     }
 
     public staff(String name, training t) {

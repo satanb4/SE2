@@ -17,6 +17,7 @@ public class User {
     private String email;
     private String password;
     private String name;
+    private String role;
 
     public String getEmail(){
         return this.email;
@@ -26,10 +27,15 @@ public class User {
         return this.name;
     } 
 
-    public void setCredentials(String name, String email, String password) {
+    public String getRole(){
+        return this.role;
+    }
+
+    public void setCredentials(String name, String email, String password, String role) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.role = role;
         writeToFile();
     }
 
@@ -49,9 +55,11 @@ public class User {
                 String name = this.name;
                 String email = this.email;
                 String password = this.password;
+                String role = this.role;
                 row.createCell(row.getLastCellNum()).setCellValue(name);
                 row.createCell(row.getLastCellNum()).setCellValue(email);
                 row.createCell(row.getLastCellNum()).setCellValue(password);
+                row.createCell(row.getLastCellNum()).setCellValue(role);
             }
         return 1;
     }
