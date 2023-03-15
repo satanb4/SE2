@@ -1,16 +1,21 @@
-//package ae;
+
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//extends the User class and implements the UserInterface interface
 public class classDirector extends User implements UserInterface{
     private ArrayList<teachingRequirement> requirements = new ArrayList<>();
     private User user;
 
-   // user.setCredentials("IAmDirector", "director@gla.uk", "Password", "Director");
+    // Override the setCredentials method to create a director role
+    public void createrole(User user) throws IOException {
+        user.setCredentials("IAmDirector", "director@gla.uk", "Password", "Director");
+    }
 
+    // Define the fillTeachingRequirement method to prompt the user to input teaching requirements and add them to the requirements ArrayList
     public void fillTeachingRequirement() {
         System.out.println("Please enter the teaching requirement");
         System.out.println("Each requirement needs to fill in two fields, field 1 is the required skill, e.g. java and field 2 is the required qualification, e.g. postgraduate，each fields is separated by a tab key");
@@ -30,6 +35,7 @@ public class classDirector extends User implements UserInterface{
         }
     }
 
+    // Define the viewRequirements method to display the current teaching requirements
     public void viewRequirements() {
         System.out.println("Current teaching requirements:");
         for (teachingRequirement requirement : requirements) {
@@ -37,13 +43,11 @@ public class classDirector extends User implements UserInterface{
         }
     }
 
+    // Define the getRequirements method to return the requirements ArrayList
     public ArrayList<teachingRequirement> getRequirements() {
         return requirements;
     }
 
-    @Override
-    public void createrole(User user) throws IOException {
-        user.setCredentials("IAmDirector", "director@gla.uk", "Password", "Director");
-    }
+
 }
 

@@ -1,7 +1,10 @@
 import java.util.Scanner;
 
+//class definition for rolefactory
 public class rolefactory {
+    //static method that returns a UserInterface object
     public static UserInterface getUser(int roleType){
+        //create a new Scanner object to read input from console
         Scanner scanner = new Scanner(System.in);
 
         if(roleType==1){
