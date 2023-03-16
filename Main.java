@@ -1,4 +1,4 @@
-package ae;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
@@ -6,11 +6,18 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         int option;
-        String staffname;
 
-        classDirector director = new classDirector();
-        Administrator administrator = new Administrator();
 
+        // Creating objects for user and rolefactory classes
+        User user = new User();
+        rolefactory factory = new rolefactory();
+
+
+        // Creating objects for classDirector and administrator interfaces
+        UserInterface classDirector = factory.getUser(1);
+        UserInterface administrator = factory.getUser(2);
+
+        // Main menu for user to select the appropriate option
         while (true) {
             System.out.println("Please enter your option:");
             System.out.println("1. Class Director");
@@ -20,27 +27,38 @@ public class Main {
 
             option = scanner.nextInt();
 
+
+
+
+            // Switch case to perform appropriate actions based on user's selection
             switch (option) {
                 case 1:
-                    director.fillTeachingRequirement();
-                    administrator.receiveTeachingRequirements(director.getRequirements());
+                    classDirector.createrole(user);
+
+                    // Allow Class Director to fill in teaching requirements
+                    ((classDirector)classDirector).fillTeachingRequirement();
                     break;
+                // Allow Administrator to receive teaching requirements from Class Director and find display matched staff, and organize training for matched staff
                 case 2:
-                    administrator.viewTeachingRequirements();
-                    administrator.findstaff();
-                    administrator.organizeTraining();
+                    administrator.createrole(user);
+                    ((Administrator) administrator).receiveTeachingRequirements( ((classDirector)classDirector).getRequirements());
+                    ((Administrator) administrator).viewTeachingRequirements();
+                    ((Administrator) administrator).findstaff();
+                    ((Administrator) administrator).viewMatchedStaff();
+                    ((Administrator) administrator).organizeTraining();
                     break;
+
+                    //Receive matched stafflist and matched staff training list from Administrator and view selection and training for the selected staff
                 case 3:
-                    System.out.println("Please enter your name:");
-                    staffname =scanner.next();
-                    staff s = new staff(staffname);
-                    s.receiveMatchedStaffList(administrator.getmatchedStaffList());
-                    s.receiveMatchedStaffTrainingList(administrator.getmatchedStaffTrainingList());
-                    s.viewselection(staffname);
-                    if(s.viewselection(staffname) == true) {
+                    UserInterface staff = factory.getUser(option);
+                    staff.createrole(user);
+                    ((staff) staff).receiveMatchedStaffList(((Administrator) administrator).getmatchedStaffList());
+                    ((staff) staff).receiveMatchedStaffTrainingList(((Administrator) administrator).getmatchedStaffTrainingList());
+                    ((staff) staff).viewselection(((staff) staff).getName());
+                    if(((staff) staff).viewselection(((staff) staff).getName()) == true) {
                         System.out.println("Congratulations！You have been selected!");
-                        s.viewtraining(staffname);
-                     }
+                        ((staff) staff).viewtraining(((staff) staff).getName());
+                    }
                     else System.out.println("Sorry, you were not selected.");
                     break;
                 case 0:
@@ -51,4 +69,3 @@ public class Main {
         }
     }
 }
-
