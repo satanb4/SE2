@@ -1,0 +1,21 @@
+@startuml
+class Administrator {
+- {static} ArrayList<teachingRequirement> requirements
+- ArrayList<staff> matchedStaffList
+- ArrayList<staff> matchedStaffTrainingList
+- User user
++ void receiveTeachingRequirements(ArrayList<teachingRequirement>)
++ void viewTeachingRequirements()
++ void findstaff()
++ void viewStaff()
++ void organizeTraining()
++ void viewStaffAndTraining()
++ ArrayList<staff> getmatchedStaffList()
++ ArrayList<staff> getmatchedStaffTrainingList()
++ void createrole(User)
+}
+
+
+UserInterface <|.. Administrator
+User <|-- Administrator
+@enduml
