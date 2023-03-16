@@ -1,0 +1,13 @@
+@startuml
+class User {
+- String email
+- String password
+- String name
+- String role
++ String getEmail()
++ String getName()
++ String getRole()
++ void setCredentials(String,String,String,String)
+- void writeToFile()
+}
+@enduml

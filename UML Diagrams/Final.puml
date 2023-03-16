@@ -1,0 +1,106 @@
+@startuml
+!theme hacker
+class Administrator {
+- {static} ArrayList<teachingRequirement> requirements
+- ArrayList<staff> matchedStaffList
+- ArrayList<staff> matchedStaffTrainingList
+- User user
++ void receiveTeachingRequirements(ArrayList<teachingRequirement>)
++ void viewTeachingRequirements()
++ void findstaff()
++ void viewStaff()
++ void organizeTraining()
++ void viewStaffAndTraining()
++ ArrayList<staff> getmatchedStaffList()
++ ArrayList<staff> getmatchedStaffTrainingList()
++ void createrole(User)
+}
+
+UserInterface o-- rolefactory
+UserInterface <|.. Administrator
+User <|-- Administrator
+
+class classDirector {
+- ArrayList<teachingRequirement> requirements
+- User user
++ void fillTeachingRequirement()
++ void viewRequirements()
++ ArrayList<teachingRequirement> getRequirements()
++ void createrole(User)
+}
+
+
+UserInterface <|.. classDirector
+User <|-- classDirector
+
+class staff {
+- String name
+- String skill
+- String qualification
+- ArrayList<staff> matchedStaffList
+- ArrayList<staff> matchedStaffTrainingList
+- User user
+- training t
++ String getName()
++ void setName(String)
++ String getSkill()
++ void setSkill(String)
++ String getQualification()
++ void setQualification(String)
++ String getTraining()
++ void receiveMatchedStaffList(ArrayList<staff>)
++ void receiveMatchedStaffTrainingList(ArrayList<staff>)
++ boolean viewselection(String)
++ void viewtraining(String)
++ void createrole(User)
+}
+
+
+UserInterface <|.. staff
+User <|-- staff
+
+class teachingRequirement {
+- String skill
+- String qualification
++ <<Create>> teachingRequirement(String,String)
++ String getSkill()
++ void setSkill(String)
++ String getQualification()
++ void setQualification(String)
+}
+
+class training {
+- String type
+- int duration
++ <<Create>> training(String,int)
++ String getType()
++ void setType(String)
++ int getDuration()
++ void setDuration(int)
+}
+
+class User {
+- String email
+- String password
+- String name
+- String role
++ String getEmail()
++ String getName()
++ String getRole()
++ void setCredentials(String,String,String,String)
+- void writeToFile()
+}
+
+interface UserInterface {
++ void createrole(User)
+}
+
+class rolefactory {
++ {static} UserInterface getUser(int)
+}
+
+class Main {
++ {static} void main(String[])
+}
+
+@enduml

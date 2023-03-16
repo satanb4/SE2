@@ -1,0 +1,27 @@
+@startuml
+class staff {
+- String name
+- String skill
+- String qualification
+- ArrayList<staff> matchedStaffList
+- ArrayList<staff> matchedStaffTrainingList
+- User user
+- training t
++ String getName()
++ void setName(String)
++ String getSkill()
++ void setSkill(String)
++ String getQualification()
++ void setQualification(String)
++ String getTraining()
++ void receiveMatchedStaffList(ArrayList<staff>)
++ void receiveMatchedStaffTrainingList(ArrayList<staff>)
++ boolean viewselection(String)
++ void viewtraining(String)
++ void createrole(User)
+}
+
+
+UserInterface <|.. staff
+User <|-- staff
+@enduml

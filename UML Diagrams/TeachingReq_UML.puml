@@ -1,0 +1,11 @@
+@startuml
+class teachingRequirement {
+- String skill
+- String qualification
++ <<Create>> teachingRequirement(String,String)
++ String getSkill()
++ void setSkill(String)
++ String getQualification()
++ void setQualification(String)
+}
+@enduml

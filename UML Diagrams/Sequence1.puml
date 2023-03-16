@@ -1,0 +1,52 @@
+@startuml
+!theme mars
+
+actor Person as person
+
+Main -> person : scanner.nextInt()
+person -> Main : option
+
+collections Rolebook as rolebook
+entity classDirector as classDirector
+
+Main -> classDirector : createRole()
+classDirector -> rolebook : UserInterface.createRole()
+classDirector -> person : Scanner(System.in)
+person -> classDirector : teachingReq
+
+database Workbook as workbook
+collections TeachingReq as teachreq
+classDirector -> teachreq : requirements.add(teachingReq)
+teachreq -> workbook : requirement.add(teachingReq)
+teachreq -> classDirector : viewRequirements()
+
+entity Administrator as admin
+Main -> admin : createRole()
+admin-> rolebook : UserInterface.createRole()
+
+
+admin -> workbook : findStaff(requirements)
+admin -> workbook : createSheet("RebuildStaff")
+workbook -> admin : ReturnMatchedStaff
+admin --> person : viewMatchedStaff()
+admin -> teachreq : receiveTeachingRequirements()
+teachreq -> admin : getRequirements()
+admin --> person : viewTeachingRequirements()
+admin -> workbook : viewMatchedStaff()
+workbook -> admin : return MatchedStaff
+admin --> person : matchedStaff
+admin -> workbook : organizeTraining()
+
+
+entity Staff as staff
+Main -> staff : createRole()
+staff -> rolebook : UserInterface.createRole()
+staff -> admin : receiveMatchedStaffList()
+admin --> staff : return StaffList
+staff -> admin : receiveMatchedStaffTrainingList
+admin --> staff : return MatchedStaffTrainingList
+staff --> person : viewSelection()
+
+
+
+@enduml

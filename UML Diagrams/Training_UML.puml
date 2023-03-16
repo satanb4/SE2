@@ -1,0 +1,11 @@
+@startuml
+class training {
+- String type
+- int duration
++ <<Create>> training(String,int)
++ String getType()
++ void setType(String)
++ int getDuration()
++ void setDuration(int)
+}
+@enduml

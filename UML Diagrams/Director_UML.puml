@@ -1,0 +1,14 @@
+@startuml
+class classDirector {
+- ArrayList<teachingRequirement> requirements
+- User user
++ void fillTeachingRequirement()
++ void viewRequirements()
++ ArrayList<teachingRequirement> getRequirements()
++ void createrole(User)
+}
+
+
+UserInterface <|.. classDirector
+User <|-- classDirector
+@enduml

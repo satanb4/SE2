@@ -1,0 +1,5 @@
+@startuml
+class rolefactory {
++ {static} UserInterface getUser(int)
+}
+@enduml
